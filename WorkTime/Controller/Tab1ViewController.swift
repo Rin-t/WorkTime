@@ -19,6 +19,8 @@ class Tab1ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         let beginConvert = CreateCircle(button: beginButton)
         let finishConvert = CreateCircle(button: finishButton)
         let breakConvert = CreateCircle(button: breakButton)
@@ -30,7 +32,12 @@ class Tab1ViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Tab1ViewController.timerUpdate), userInfo: nil, repeats: true)
         
         //UserDefaults
-        UserDefaults.standard.register(defaults: ["data" : []])
+        UserDefaults.standard.register(defaults: ["beginningTime" : []])
+        UserDefaults.standard.register(defaults: ["beginningDay" : []])
+        UserDefaults.standard.register(defaults: ["finishTime" : []])
+        UserDefaults.standard.register(defaults: ["finishDay" : []])
+        UserDefaults.standard.register(defaults: ["breakTime" : []])
+        UserDefaults.standard.register(defaults: ["breakDay" : []])
         
     }
     
@@ -59,29 +66,68 @@ class Tab1ViewController: UIViewController {
     //MARK: - 出退勤ボタン
     
     @IBAction func beginButtonTapped(_ sender: UIButton) {
-        tapped()
+        
+        getTime(TimeForKey: "beginningTime",DayForKey: "beginningDay")
+        
     }
     
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-        tapped()
+        
+        getTime(TimeForKey: "finishTime", DayForKey: "finishDay")
+        
     }
     
     @IBAction func breakButtonTapped(_ sender: UIButton) {
-        tapped()
-    }
-    
-    
-    
-    //TappedMethod
-    @objc func tapped() {
-        guard var data = UserDefaults.standard.array(forKey: "data") as? [String] else {
+        let date = DateFormatter()
+        date.timeStyle = .none
+        date.dateStyle = .short
+        date.locale = Locale(identifier: "ja_JP")
+        let today = Date()
+        
+        guard var dateData = UserDefaults.standard.array(forKey: "breakDay") as? [String] else {
             return
         }
-        data.append(Date().description)
-        UserDefaults.standard.set(data, forKey: "data")
-        print(data)
+        dateData.append(String(date.string(from: today).dropFirst(8)))
+        UserDefaults.standard.set(dateData, forKey: "breakDay")
+        
+        guard var timeData = UserDefaults.standard.array(forKey: "breakTime") as? [String] else {
+            return
+        }
+        timeData.append("1:00")
+        UserDefaults.standard.set(timeData, forKey: "breakTime")
+        
+        
     }
-//    
+    
+    
+    
+    func getTime(TimeForKey: String, DayForKey: String){
+        let time = DateFormatter()
+        time.timeStyle = .short
+        time.dateStyle = .none
+        time.locale = Locale(identifier: "ja_JP")
+        let now = Date()
+        
+        guard var timeData = UserDefaults.standard.array(forKey: TimeForKey) as? [String] else {
+            return
+        }
+        timeData.append(time.string(from: now))
+        UserDefaults.standard.set(timeData, forKey: TimeForKey)
+        
+        let date = DateFormatter()
+        date.timeStyle = .none
+        date.dateStyle = .short
+        date.locale = Locale(identifier: "ja_JP")
+        let today = Date()
+        
+        guard var dateData = UserDefaults.standard.array(forKey: DayForKey) as? [String] else {
+            return
+        }
+        dateData.append(String(date.string(from: today).dropFirst(8)))
+        UserDefaults.standard.set(dateData, forKey: DayForKey)
+        
+        
+    }
 
     
 
