@@ -8,20 +8,33 @@
 
 import UIKit
 
-class Tab2ViewController: UIViewController {
 
+struct WorkStatus2 {
+    let year: String
+    let month: String
+    let day: String
+//    let beginTime: String
+//    let finishTime: String
+//    let breakTime: String
+}
+
+
+class Tab2ViewController: UIViewController {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
+    // userdefaultData か data に揃えた方が良さそう
     var userdefaultData: [[String: String]] = []
     var data: [[String: String]] = []
-    var beginningTimesData: [String] = []
-    var finishTimesData: [String] = []
-    var biginningDayData: [String] = []
-    var finishDayData: [String] = []
-    var breakTimeData: [String] = []
-    var breakDayData: [String] = []
+    var data2: [WorkStatus2] = []
+    //    var beginningTimesData: [String] = []
+    //    var finishTimesData: [String] = []
+    //    var biginningDayData: [String] = []
+    //    var finishDayData: [String] = []
+    //    var breakTimeData: [String] = []
+    //    var breakDayData: [String] = []
     
     var year = 0
     var month = 0
@@ -40,17 +53,39 @@ class Tab2ViewController: UIViewController {
         
         
         
-       
+        
         tableView.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let data = UserDefaults.standard.object(forKey: "data") as? Array<[String: String]> else {
+        guard let data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
         print(data)
+        
+        
+        for dayData in data {
+            let year = dayData["年"]!
+            let month = dayData["月"]!
+            let day = dayData["日"]!
+            let workStatus2 = WorkStatus2(year: year, month: month, day: day)
+            data2.append(workStatus2)
+        }
+        
+        for dayData in data2 {
+            print("-------")
+            print(dayData.year)
+            print(dayData.month)
+            print(dayData.day)
+            print("-------")
+        }
+        
+        let julyData = data2.filter { workStatus2 -> Bool in
+            workStatus2.month == "07"
+        }
+
         
         self.userdefaultData = data
         
@@ -60,10 +95,12 @@ class Tab2ViewController: UIViewController {
             for i in 0...userdefaultData.count - 1 {
                 for j in 0...30{
                     if Int(userdefaultData[i]["日"]!) == Int(self.data[j]["日"]!) && userdefaultData[i]["年"] == self.data[j]["年"] && Int(userdefaultData[i]["月"]!) == Int(self.data[j]["月"]!) {
-                        self.data[j] = userdefaultData[i]              }
+                        self.data[j] = userdefaultData[i]
+                        
+                    }
                 }
             }
-       
+            
             tableView.reloadData()
             
         }
@@ -74,7 +111,7 @@ class Tab2ViewController: UIViewController {
     
     
     
-//MARK: - Next,PreviousMonthButton
+    //MARK: - Next,PreviousMonthButton
     @IBAction func nextMonthTapped(_ sender: UIButton) {
         
         //その年月のデータのみ取得してdataに入れる
@@ -110,7 +147,7 @@ class Tab2ViewController: UIViewController {
     
     
     @objc func timerUpdate() {
-      
+        
         let date = DateFormatter()
         date.timeStyle = .none
         date.dateStyle = .short
@@ -124,11 +161,11 @@ class Tab2ViewController: UIViewController {
         yearLabel.text = String(year) + "年"
         
     }
-   
     
-
+    
+    
 }
- 
+
 //MARK: - TableView
 
 extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
@@ -145,8 +182,8 @@ extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
         return days
         
     }
-                
-
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "time")! as! CustomTableViewCell
         cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime:data[indexPath.row]["退勤"]! , breakTime: data[indexPath.row]["休憩"]!)
