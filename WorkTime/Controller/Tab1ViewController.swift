@@ -18,7 +18,7 @@ class Tab1ViewController: UIViewController {
     var breakTime = "60"
     var data: [[String: String]] = []
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,12 +33,10 @@ class Tab1ViewController: UIViewController {
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Tab1ViewController.timerUpdate), userInfo: nil, repeats: true)
         
-        if let savedData = UserDefaults.standard.object(forKey: "data") as? Array<[String: String]> {
+        if let savedData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] {
             data = savedData
         }
         UserDefaults.standard.set(data, forKey: "data")
-        
-        
         
     }
     
@@ -68,23 +66,20 @@ class Tab1ViewController: UIViewController {
     
     @IBAction func beginButtonTapped(_ sender: UIButton) {
         getTime(buttonTitle: sender.currentTitle!)
-       
+        // getTime2(workStatus: .begin)
         
     }
     
     @IBAction func finishButtonTapped(_ sender: UIButton) {
         getTime(buttonTitle: sender.currentTitle!)
-        
+        // getTime2(workStatus: .finish)
         
     }
     
     @IBAction func breakButtonTapped(_ sender: UIButton) {
-       getTime(buttonTitle: sender.currentTitle!)
-        
-        
+        getTime(buttonTitle: sender.currentTitle!)
+        // getTime2(workStatus: .rest)
     }
-    
-    
     
     func getTime(buttonTitle: String){
         let today = Date()
@@ -109,12 +104,12 @@ class Tab1ViewController: UIViewController {
         
         //辞書型配列に取得データを追加
         
-        guard var saveData = UserDefaults.standard.object(forKey: "data") as? Array<[String: String]> else {
+        guard var saveData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             print("a")
             return
         }
         
-         print(saveData)
+        print(saveData)
         
         if saveData.count == 0 {
             if  buttonTitle == "休憩" {
@@ -150,34 +145,101 @@ class Tab1ViewController: UIViewController {
         print(saveData)
         
         //Userdefault
-       
-        
-//        guard var dateData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
-//            return
-//        }
-//        dateData.append(String(date.string(from: today).dropFirst(8)))
-//        UserDefaults.standard.set(dateData, forKey: forKey)
-//
-//
-//        let now = Date()
-//
-//        guard var timeData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
-//            return
-//        }
-//        timeData.append(time.string(from: now))
-//        UserDefaults.standard.set(timeData, forKey: forKey)
         
         
-        
-        
-        
-        
-        
+        //        guard var dateData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+        //            return
+        //        }
+        //        dateData.append(String(date.string(from: today).dropFirst(8)))
+        //        UserDefaults.standard.set(dateData, forKey: forKey)
+        //
+        //
+        //        let now = Date()
+        //
+        //        guard var timeData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+        //            return
+        //        }
+        //        timeData.append(time.string(from: now))
+        //        UserDefaults.standard.set(timeData, forKey: forKey)
         
     }
-
     
-
+    // 以下小野
+    
+    enum WorkStatus: String {
+        case begin = "出勤"
+        case finish = "退勤"
+        case rest = "休憩"
+    }
+    
+    
+    func getTime2(workStatus: WorkStatus){
+        let today = Date()
+        
+        //年月日のデータを取得
+        let ymd = DateFormatter()
+        ymd.timeStyle = .none
+        ymd.dateStyle = .short
+        ymd.locale = Locale(identifier: "ja_JP")
+        
+        let year = ymd.string(from: today).dropLast(6)
+        let month = ymd.string(from: today).dropFirst(5).dropLast(3)
+        let date = ymd.string(from: today).dropFirst(8)
+        
+        //時間データの取得
+        let currentTime = DateFormatter()
+        currentTime.timeStyle = .short
+        currentTime.dateStyle = .none
+        currentTime.locale = Locale(identifier: "ja_JP")
+        
+        let time = currentTime.string(from: today)
+        
+        //辞書型配列に取得データを追加
+        
+        guard var saveData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+            print("a")
+            return
+        }
+        
+        print(saveData)
+        
+        if saveData.count == 0 {
+            
+            if workStatus == .rest {
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData[0][workStatus.rawValue] = breakTime
+            } else {
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData[0][workStatus.rawValue] = String(time)
+            }
+        } else {
+            
+            for i in 0...saveData.count - 1{
+                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date){
+                    
+                    if workStatus == .rest {
+                        saveData[i][workStatus.rawValue] = breakTime
+                    } else {
+                        saveData[i][workStatus.rawValue] = String(time)
+                    }
+                } else if i == saveData.count - 1 {
+                    
+                    if workStatus == .rest {
+                        saveData[i][workStatus.rawValue] = breakTime
+                    } else {
+                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                        saveData[i][workStatus.rawValue] = String(time)
+                    }
+                }
+            }
+            
+        }
+        UserDefaults.standard.set(saveData, forKey: "data")
+        print(saveData)
+    }
+    
+    
+    
 }
 
 
