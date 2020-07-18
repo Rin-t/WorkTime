@@ -15,6 +15,8 @@ class Tab1ViewController: UIViewController {
     @IBOutlet weak var beginButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var breakButton: UIButton!
+    var breakTime = "60"
+    var data: [[String: String]] = []
     
 
     override func viewDidLoad() {
@@ -31,13 +33,12 @@ class Tab1ViewController: UIViewController {
         
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Tab1ViewController.timerUpdate), userInfo: nil, repeats: true)
         
-        //UserDefaults
-        UserDefaults.standard.register(defaults: ["beginningTime" : []])
-        UserDefaults.standard.register(defaults: ["beginningDay" : []])
-        UserDefaults.standard.register(defaults: ["finishTime" : []])
-        UserDefaults.standard.register(defaults: ["finishDay" : []])
-        UserDefaults.standard.register(defaults: ["breakTime" : []])
-        UserDefaults.standard.register(defaults: ["breakDay" : []])
+        if let savedData = UserDefaults.standard.object(forKey: "data") as? Array<[String: String]> {
+            data = savedData
+        }
+        UserDefaults.standard.set(data, forKey: "data")
+        
+        
         
     }
     
@@ -66,65 +67,111 @@ class Tab1ViewController: UIViewController {
     //MARK: - 出退勤ボタン
     
     @IBAction func beginButtonTapped(_ sender: UIButton) {
-        
-        getTime(TimeForKey: "beginningTime",DayForKey: "beginningDay")
+        getTime(buttonTitle: sender.currentTitle!)
+       
         
     }
     
     @IBAction func finishButtonTapped(_ sender: UIButton) {
+        getTime(buttonTitle: sender.currentTitle!)
         
-        getTime(TimeForKey: "finishTime", DayForKey: "finishDay")
         
     }
     
     @IBAction func breakButtonTapped(_ sender: UIButton) {
-        let date = DateFormatter()
-        date.timeStyle = .none
-        date.dateStyle = .short
-        date.locale = Locale(identifier: "ja_JP")
-        let today = Date()
-        
-        guard var dateData = UserDefaults.standard.array(forKey: "breakDay") as? [String] else {
-            return
-        }
-        dateData.append(String(date.string(from: today).dropFirst(8)))
-        UserDefaults.standard.set(dateData, forKey: "breakDay")
-        
-        guard var timeData = UserDefaults.standard.array(forKey: "breakTime") as? [String] else {
-            return
-        }
-        timeData.append("1:00")
-        UserDefaults.standard.set(timeData, forKey: "breakTime")
+       getTime(buttonTitle: sender.currentTitle!)
         
         
     }
     
     
     
-    func getTime(TimeForKey: String, DayForKey: String){
-        let time = DateFormatter()
-        time.timeStyle = .short
-        time.dateStyle = .none
-        time.locale = Locale(identifier: "ja_JP")
-        let now = Date()
-        
-        guard var timeData = UserDefaults.standard.array(forKey: TimeForKey) as? [String] else {
-            return
-        }
-        timeData.append(time.string(from: now))
-        UserDefaults.standard.set(timeData, forKey: TimeForKey)
-        
-        let date = DateFormatter()
-        date.timeStyle = .none
-        date.dateStyle = .short
-        date.locale = Locale(identifier: "ja_JP")
+    func getTime(buttonTitle: String){
         let today = Date()
         
-        guard var dateData = UserDefaults.standard.array(forKey: DayForKey) as? [String] else {
+        //年月日のデータを取得
+        let ymd = DateFormatter()
+        ymd.timeStyle = .none
+        ymd.dateStyle = .short
+        ymd.locale = Locale(identifier: "ja_JP")
+        
+        let year = ymd.string(from: today).dropLast(6)
+        let month = ymd.string(from: today).dropFirst(5).dropLast(3)
+        let date = ymd.string(from: today).dropFirst(8)
+        
+        //時間データの取得
+        let currentTime = DateFormatter()
+        currentTime.timeStyle = .short
+        currentTime.dateStyle = .none
+        currentTime.locale = Locale(identifier: "ja_JP")
+        
+        let time = currentTime.string(from: today)
+        
+        //辞書型配列に取得データを追加
+        
+        guard var saveData = UserDefaults.standard.object(forKey: "data") as? Array<[String: String]> else {
+            print("a")
             return
         }
-        dateData.append(String(date.string(from: today).dropFirst(8)))
-        UserDefaults.standard.set(dateData, forKey: DayForKey)
+        
+         print(saveData)
+        
+        if saveData.count == 0 {
+            if  buttonTitle == "休憩" {
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData[0][buttonTitle] = breakTime
+            } else {
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData[0][buttonTitle] = String(time)
+            }
+            
+        } else {
+            
+            for i in 0...saveData.count - 1{
+                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date){
+                    if buttonTitle == "休憩" {
+                        saveData[i][buttonTitle] = breakTime
+                    } else {
+                        saveData[i][buttonTitle] = String(time)
+                    }
+                } else if i == saveData.count - 1 {
+                    if buttonTitle == "休憩" {
+                        saveData[i][buttonTitle] = breakTime
+                    } else {
+                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                        saveData[i][buttonTitle] = String(time)
+                    }
+                    
+                }
+            }
+            
+        }
+        UserDefaults.standard.set(saveData, forKey: "data")
+        print(saveData)
+        
+        //Userdefault
+       
+        
+//        guard var dateData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+//            return
+//        }
+//        dateData.append(String(date.string(from: today).dropFirst(8)))
+//        UserDefaults.standard.set(dateData, forKey: forKey)
+//
+//
+//        let now = Date()
+//
+//        guard var timeData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+//            return
+//        }
+//        timeData.append(time.string(from: now))
+//        UserDefaults.standard.set(timeData, forKey: forKey)
+        
+        
+        
+        
+        
+        
         
         
     }

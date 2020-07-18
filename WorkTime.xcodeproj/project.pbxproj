@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		228E940E171669B020C8896A /* Pods_WorkTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B53654DB898F867ECA3EE3 /* Pods_WorkTime.framework */; };
+		243784C524C2721200F157F6 /* DayDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */; };
+		243784C724C2774800F157F6 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784C624C2774800F157F6 /* PickerViewController.swift */; };
 		24D0F9DE24B17EF1008D2187 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */; };
 		24D0FA1C24B93118008D2187 /* DayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */; };
 		24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailTableViewCell.swift; sourceTree = "<group>"; };
+		243784C624C2774800F157F6 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailViewController.swift; sourceTree = "<group>"; };
 		24FDB5C0249D9F9E003885F3 /* WorkTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				24FDB5F3249F7BE8003885F3 /* Main.storyboard */,
+				243784C624C2774800F157F6 /* PickerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				24FDB61524A6C83A003885F3 /* DetailSettingViewController.swift */,
 				24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */,
 				24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */,
+				243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -456,7 +462,9 @@
 				24FDB61424A6C688003885F3 /* Tab4ViewController.swift in Sources */,
 				24FDB61224A6C67C003885F3 /* Tab3ViewController.swift in Sources */,
 				24FDB60C24A4E8F8003885F3 /* Tab1ViewController.swift in Sources */,
+				243784C524C2721200F157F6 /* DayDetailTableViewCell.swift in Sources */,
 				24D0FA1C24B93118008D2187 /* DayDetailViewController.swift in Sources */,
+				243784C724C2774800F157F6 /* PickerViewController.swift in Sources */,
 				24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */,
 				24FDB61624A6C83A003885F3 /* DetailSettingViewController.swift in Sources */,
 				24FDB5C6249D9F9E003885F3 /* SceneDelegate.swift in Sources */,
