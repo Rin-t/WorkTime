@@ -47,12 +47,8 @@ class Tab2ViewController: UIViewController {
         timerUpdate()
         
         for i in 1...31{
-            data.append(["年": String(year), "月":String(month), "日": "\(String(i))", "出勤": "", "退勤":"", "休憩": ""])
+            data.append(["年": String(year), "月":String(month), "日": "\(String(i))", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
         }
-        
-        
-        
-        
         
         tableView.backgroundColor = .white
     }
@@ -193,5 +189,7 @@ extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "goToDayDetail", sender: nil)
     }
+    
+    
     
 }

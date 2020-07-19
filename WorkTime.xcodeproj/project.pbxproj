@@ -167,8 +167,8 @@
 		24FDB60824A4E884003885F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				24FDB5F3249F7BE8003885F3 /* Main.storyboard */,
 				243784C624C2774800F157F6 /* PickerViewController.swift */,
+				24FDB5F3249F7BE8003885F3 /* Main.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";

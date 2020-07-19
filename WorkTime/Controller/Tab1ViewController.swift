@@ -65,104 +65,104 @@ class Tab1ViewController: UIViewController {
     //MARK: - 出退勤ボタン
     
     @IBAction func beginButtonTapped(_ sender: UIButton) {
-        getTime(buttonTitle: sender.currentTitle!)
-        // getTime2(workStatus: .begin)
+        //getTime(buttonTitle: sender.currentTitle!)
+        getTime2(workStatus: .begin)
         
     }
     
     @IBAction func finishButtonTapped(_ sender: UIButton) {
-        getTime(buttonTitle: sender.currentTitle!)
-        // getTime2(workStatus: .finish)
+        //getTime(buttonTitle: sender.currentTitle!)
+        getTime2(workStatus: .finish)
         
     }
     
     @IBAction func breakButtonTapped(_ sender: UIButton) {
-        getTime(buttonTitle: sender.currentTitle!)
-        // getTime2(workStatus: .rest)
+        //getTime(buttonTitle: sender.currentTitle!)
+        getTime2(workStatus: .rest)
     }
     
-    func getTime(buttonTitle: String){
-        let today = Date()
-        
-        //年月日のデータを取得
-        let ymd = DateFormatter()
-        ymd.timeStyle = .none
-        ymd.dateStyle = .short
-        ymd.locale = Locale(identifier: "ja_JP")
-        
-        let year = ymd.string(from: today).dropLast(6)
-        let month = ymd.string(from: today).dropFirst(5).dropLast(3)
-        let date = ymd.string(from: today).dropFirst(8)
-        
-        //時間データの取得
-        let currentTime = DateFormatter()
-        currentTime.timeStyle = .short
-        currentTime.dateStyle = .none
-        currentTime.locale = Locale(identifier: "ja_JP")
-        
-        let time = currentTime.string(from: today)
-        
-        //辞書型配列に取得データを追加
-        
-        guard var saveData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
-            print("a")
-            return
-        }
-        
-        print(saveData)
-        
-        if saveData.count == 0 {
-            if  buttonTitle == "休憩" {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
-                saveData[0][buttonTitle] = breakTime
-            } else {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
-                saveData[0][buttonTitle] = String(time)
-            }
-            
-        } else {
-            
-            for i in 0...saveData.count - 1{
-                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date){
-                    if buttonTitle == "休憩" {
-                        saveData[i][buttonTitle] = breakTime
-                    } else {
-                        saveData[i][buttonTitle] = String(time)
-                    }
-                } else if i == saveData.count - 1 {
-                    if buttonTitle == "休憩" {
-                        saveData[i][buttonTitle] = breakTime
-                    } else {
-                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
-                        saveData[i][buttonTitle] = String(time)
-                    }
-                    
-                }
-            }
-            
-        }
-        UserDefaults.standard.set(saveData, forKey: "data")
-        print(saveData)
-        
-        //Userdefault
-        
-        
-        //        guard var dateData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
-        //            return
-        //        }
-        //        dateData.append(String(date.string(from: today).dropFirst(8)))
-        //        UserDefaults.standard.set(dateData, forKey: forKey)
-        //
-        //
-        //        let now = Date()
-        //
-        //        guard var timeData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
-        //            return
-        //        }
-        //        timeData.append(time.string(from: now))
-        //        UserDefaults.standard.set(timeData, forKey: forKey)
-        
-    }
+//    func getTime(buttonTitle: String){
+//        let today = Date()
+//
+//        //年月日のデータを取得
+//        let ymd = DateFormatter()
+//        ymd.timeStyle = .none
+//        ymd.dateStyle = .short
+//        ymd.locale = Locale(identifier: "ja_JP")
+//
+//        let year = ymd.string(from: today).dropLast(6)
+//        let month = ymd.string(from: today).dropFirst(5).dropLast(3)
+//        let date = ymd.string(from: today).dropFirst(8)
+//
+//        //時間データの取得
+//        let currentTime = DateFormatter()
+//        currentTime.timeStyle = .short
+//        currentTime.dateStyle = .none
+//        currentTime.locale = Locale(identifier: "ja_JP")
+//
+//        let time = currentTime.string(from: today)
+//
+//        //辞書型配列に取得データを追加
+//
+//        guard var saveData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+//            print("a")
+//            return
+//        }
+//
+//        print(saveData)
+//
+//        if saveData.count == 0 {
+//            if  buttonTitle == "休憩" {
+//                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+//                saveData[0][buttonTitle] = breakTime
+//            } else {
+//                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+//                saveData[0][buttonTitle] = String(time)
+//            }
+//
+//        } else {
+//
+//            for i in 0...saveData.count - 1{
+//                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date){
+//                    if buttonTitle == "休憩" {
+//                        saveData[i][buttonTitle] = breakTime
+//                    } else {
+//                        saveData[i][buttonTitle] = String(time)
+//                    }
+//                } else if i == saveData.count - 1 {
+//                    if buttonTitle == "休憩" {
+//                        saveData[i][buttonTitle] = breakTime
+//                    } else {
+//                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+//                        saveData[i][buttonTitle] = String(time)
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//        UserDefaults.standard.set(saveData, forKey: "data")
+//        print(saveData)
+//
+//        //Userdefault
+//
+//
+//        //        guard var dateData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+//        //            return
+//        //        }
+//        //        dateData.append(String(date.string(from: today).dropFirst(8)))
+//        //        UserDefaults.standard.set(dateData, forKey: forKey)
+//        //
+//        //
+//        //        let now = Date()
+//        //
+//        //        guard var timeData = UserDefaults.standard.array(forKey: forKey) as? [String] else {
+//        //            return
+//        //        }
+//        //        timeData.append(time.string(from: now))
+//        //        UserDefaults.standard.set(timeData, forKey: forKey)
+//
+//    }
     
     // 以下小野
     
@@ -197,7 +197,6 @@ class Tab1ViewController: UIViewController {
         //辞書型配列に取得データを追加
         
         guard var saveData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
-            print("a")
             return
         }
         
@@ -206,10 +205,10 @@ class Tab1ViewController: UIViewController {
         if saveData.count == 0 {
             
             if workStatus == .rest {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
                 saveData[0][workStatus.rawValue] = breakTime
             } else {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
                 saveData[0][workStatus.rawValue] = String(time)
             }
         } else {
@@ -227,7 +226,7 @@ class Tab1ViewController: UIViewController {
                     if workStatus == .rest {
                         saveData[i][workStatus.rawValue] = breakTime
                     } else {
-                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": ""])
+                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
                         saveData[i][workStatus.rawValue] = String(time)
                     }
                 }
