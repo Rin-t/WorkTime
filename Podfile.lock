@@ -2,21 +2,25 @@ PODS:
   - Charts (3.5.0):
     - Charts/Core (= 3.5.0)
   - Charts/Core (3.5.0)
+  - SwiftLint (0.39.2)
   - TinyConstraints (4.0.1)
 
 DEPENDENCIES:
   - Charts
+  - SwiftLint
   - TinyConstraints
 
 SPEC REPOS:
   trunk:
     - Charts
+    - SwiftLint
     - TinyConstraints
 
 SPEC CHECKSUMS:
   Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   TinyConstraints: 8dd91295e56797648c7bc335dd20e1d91ec4c192
 
-PODFILE CHECKSUM: 41f000464cdcad1c7b75d7f7a949662a4561ae2a
+PODFILE CHECKSUM: 6a9815cf0fa98d97074636bcd79ab1e1284f3bc1
 
 COCOAPODS: 1.9.3

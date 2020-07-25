@@ -8,22 +8,19 @@
 
 import UIKit
 
-class DayDetailViewController: UIViewController{
+class DayDetailViewController: UIViewController {
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var detailTableView: UITableView!
     @IBOutlet weak var memoTextView: UITextView!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var returnButton: UIButton!
-    
-    
-    
-    let cellTitle: [String] = ["出勤時刻","退勤時刻","休憩時間"]
+
+    let cellTitle: [String] = ["出勤時刻", "退勤時刻", "休憩時間"]
     var cellTime: [String] = []
     var nextViewTitle = ""
     var ymd: WorkStatus!
-    var todayData: [[String:String]] = [[:]]
-    
+    var todayData: [[String: String]] = [[:]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +35,6 @@ class DayDetailViewController: UIViewController{
         addDoneButtonOnKeyboard()
     }
     
-    
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -50,7 +45,7 @@ class DayDetailViewController: UIViewController{
         let today = WorkStatus(year: ymd.year, month: ymd.month, day: ymd.day)
         
         //userdefaultからその日のデータを取得
-        todayData = data.filter{ (ymd) -> Bool in
+        todayData = data.filter { (ymd) -> Bool in
             ymd["年"] == today.year && Int(ymd["月"]!) == Int(today.month) && Int(ymd["日"]!) == Int(today.day)
         }
     
@@ -83,11 +78,9 @@ class DayDetailViewController: UIViewController{
         memoTextView.inputAccessoryView = doneToolbar
     }
     
-    @objc func doneButtonAction(){
+    @objc func doneButtonAction() {
         memoTextView.resignFirstResponder()
     }
-    
-    
     
     //MARK: - returnTapped
     
@@ -97,10 +90,8 @@ class DayDetailViewController: UIViewController{
     
 }
 
-
-
 //MARK: - TableView
-extension DayDetailViewController: UITableViewDelegate,UITableViewDataSource {
+extension DayDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
@@ -129,12 +120,11 @@ extension DayDetailViewController: UITableViewDelegate,UITableViewDataSource {
 
 //MARK: - viewdeledate
 
-extension DayDetailViewController: UITextViewDelegate{
+extension DayDetailViewController: UITextViewDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.memoTextView.resignFirstResponder()
     }
-    
     
     func textViewDidEndEditing(_ textView: UITextView) {
         

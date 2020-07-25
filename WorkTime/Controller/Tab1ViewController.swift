@@ -17,8 +17,7 @@ class Tab1ViewController: UIViewController {
     @IBOutlet weak var breakButton: UIButton!
     var breakTime = "60"
     var data: [[String: String]] = []
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -59,7 +58,6 @@ class Tab1ViewController: UIViewController {
         let today = Date()
         dateLabel.text = date.string(from: today)
         dateLabel.textColor = .black
-        
     }
     
     //MARK: - 出退勤ボタン
