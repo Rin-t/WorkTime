@@ -64,7 +64,7 @@ class DayDetailViewController: UIViewController {
         
     }
     
-    func addDoneButtonOnKeyboard(){
+    func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         doneToolbar.barStyle = .default
         
@@ -131,7 +131,7 @@ extension DayDetailViewController: UITextViewDelegate {
         if todayData != [] {
             todayData[0]["memo"] = textView.text
         } else {
-            todayData.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "", "退勤":"", "休憩": "", "memo": textView.text])
+            todayData.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "", "休憩": "", "memo": textView.text])
         }
         print(todayData)
         guard var data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
@@ -150,10 +150,6 @@ extension DayDetailViewController: UITextViewDelegate {
         }
         UserDefaults.standard.set(data, forKey: "data")
         
-        
     }
     
 }
-
-
-

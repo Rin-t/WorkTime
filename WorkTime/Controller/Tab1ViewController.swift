@@ -21,7 +21,6 @@ class Tab1ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         let beginConvert = CreateCircle(button: beginButton)
         let finishConvert = CreateCircle(button: finishButton)
         let breakConvert = CreateCircle(button: breakButton)
@@ -38,8 +37,6 @@ class Tab1ViewController: UIViewController {
         UserDefaults.standard.set(data, forKey: "data")
         
     }
-    
-    
     
     //MARK: - Timer
     @objc func timerUpdate() {
@@ -85,8 +82,7 @@ class Tab1ViewController: UIViewController {
         case rest = "休憩"
     }
     
-    
-    func getTime2(workStatus: WorkStatus){
+    func getTime2(workStatus: WorkStatus) {
         let today = Date()
         
         //年月日のデータを取得
@@ -118,16 +114,16 @@ class Tab1ViewController: UIViewController {
         if saveData.count == 0 {
             
             if workStatus == .rest {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
+                saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
                 saveData[0][workStatus.rawValue] = breakTime
             } else {
-                saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
+                saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
                 saveData[0][workStatus.rawValue] = String(time)
             }
         } else {
             
-            for i in 0...saveData.count - 1{
-                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date){
+            for i in 0...saveData.count - 1 {
+                if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date) {
                     
                     if workStatus == .rest {
                         saveData[i][workStatus.rawValue] = breakTime
@@ -139,7 +135,7 @@ class Tab1ViewController: UIViewController {
                     if workStatus == .rest {
                         saveData[i][workStatus.rawValue] = breakTime
                     } else {
-                        saveData.append(["年": "\(year)", "月":"\(month)", "日": "\(date)", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
+                        saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
                         print(saveData[0])
                         saveData[i + 1][workStatus.rawValue] = String(time)
                     }
@@ -151,9 +147,4 @@ class Tab1ViewController: UIViewController {
         print(saveData)
     }
     
-    
-    
 }
-
-
-

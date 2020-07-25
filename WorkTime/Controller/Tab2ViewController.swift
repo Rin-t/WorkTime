@@ -8,13 +8,11 @@
 
 import UIKit
 
-
 struct WorkStatus {
     var year: String
     let month: String
     let day: String
 }
-
 
 class Tab2ViewController: UIViewController {
     
@@ -32,13 +30,12 @@ class Tab2ViewController: UIViewController {
     var days = 0
     var passYmd: WorkStatus!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         timerUpdate()
         
-        for i in 1...31{
-            data.append(["年": String(year), "月":String(month), "日": "\(String(i))", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
+        for i in 1...31 {
+            data.append(["年": String(year), "月": String(month), "日": "\(String(i))", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
         }
         
     }
@@ -58,7 +55,6 @@ class Tab2ViewController: UIViewController {
             data2.append(workStatus2)
         }
         
-        
         let julyData = data2.filter { workStatus2 -> Bool in
             workStatus2.month == "07"
         }
@@ -69,7 +65,7 @@ class Tab2ViewController: UIViewController {
             return
         } else {
             for i in 0...userdefaultData.count - 1 {
-                for j in 0...30{
+                for j in 0...30 {
                     if Int(userdefaultData[i]["日"]!) == Int(self.data[j]["日"]!) && userdefaultData[i]["年"] == self.data[j]["年"] && Int(userdefaultData[i]["月"]!) == Int(self.data[j]["月"]!) {
                         self.data[j] = userdefaultData[i]
                         
@@ -82,10 +78,6 @@ class Tab2ViewController: UIViewController {
         }
         
     }
-    
-    
-    
-    
     
     //MARK: - Next,PreviousMonthButton
     @IBAction func nextMonthTapped(_ sender: UIButton) {
@@ -103,7 +95,6 @@ class Tab2ViewController: UIViewController {
         
     }
     
-    
     @IBAction func previousMonthTapped(_ sender: UIButton) {
         if month == 1 {
             month = 12
@@ -118,7 +109,6 @@ class Tab2ViewController: UIViewController {
     }
     
     //MARK: - timerUpdate
-    
     
     func timerUpdate() {
         
@@ -136,13 +126,11 @@ class Tab2ViewController: UIViewController {
         
     }
     
-    
-    
 }
 
 //MARK: - TableView
 
-extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
+extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if month == 01 || month == 03 || month == 05 || month == 07 || month == 08 || month == 10 || month == 12 {
             days = 31
@@ -157,10 +145,9 @@ extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
         
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "time")! as! CustomTableViewCell
-        cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime:data[indexPath.row]["退勤"]! , breakTime: data[indexPath.row]["休憩"]!)
+        cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime: data[indexPath.row]["退勤"]!, breakTime: data[indexPath.row]["休憩"]!)
         return cell
     }
     
@@ -175,6 +162,5 @@ extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
         let nextVC = segue.destination as! DayDetailViewController
         nextVC.ymd = passYmd
     }
-    
     
 }

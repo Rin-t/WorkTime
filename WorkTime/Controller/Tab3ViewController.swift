@@ -29,14 +29,10 @@ class Tab3ViewController: UIViewController {
             chartView.xAxis.labelTextColor = .white
             chartView.xAxis.axisLineColor = .systemBlue
             
-            
             chartView.animate(xAxisDuration: 0.8)
-            
             
             return chartView
         }()
-        
-        
 
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -65,14 +61,12 @@ class Tab3ViewController: UIViewController {
             set1.drawFilledEnabled = true
             //let data = BarChartData(dataSet: set1)
             
-            
            let data = LineChartData(dataSet: set1)
             
             //数値消せる
             data.setDrawValues(false)
             lineChrtView.data = data
         }
-        
         
         let yValues: [ChartDataEntry] = [
             ChartDataEntry(x: 0.0, y: 10.0),
@@ -90,10 +84,8 @@ class Tab3ViewController: UIViewController {
             ChartDataEntry(x: 12.0, y: 34.0),
             ChartDataEntry(x: 13.0, y: 37.0),
             ChartDataEntry(x: 14.0, y: 40.0)
-            
         
         ]
-       
     
     /*
      // MARK: - Navigation

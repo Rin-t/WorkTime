@@ -18,8 +18,6 @@ struct CreateCircle {
         let halfWidth = self.button.bounds.height / 2
         button.layer.cornerRadius = CGFloat(halfWidth)
         
-        
     }
-    
     
 }

@@ -16,9 +16,6 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var breakTimeLabel: UILabel!
     @IBOutlet weak var workTimeLabel: UILabel!
     @IBOutlet weak var oneTimeInputLabel: UILabel!
-    
-    
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,15 +28,11 @@ class CustomTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setCell(date: String, beginningTime: String, finishTime: String, breakTime: String){
+    func setCell(date: String, beginningTime: String, finishTime: String, breakTime: String) {
         dateLabel.text = date + "日"
         beginingTimeLabel.text = beginningTime
         finishTimeLabel.text = finishTime
         breakTimeLabel.text = breakTime
     }
-    
-    
 
 }
-
-

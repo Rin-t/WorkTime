@@ -18,11 +18,11 @@ class PickerViewController: UIViewController {
     var setHour = "0"
     var setMinute = "00"
     var receivedTitle = ""
-    var todayData: [[String:String]] = [[:]]
+    var todayData: [[String: String]] = [[:]]
     var ymd: WorkStatus!
     
-    let hour = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
-    var minutes:[String] = ["00","01","02","03","04","05","06","07","08","09"]
+    let hour = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"]
+    var minutes: [String] = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +39,7 @@ class PickerViewController: UIViewController {
         
         pickerView.delegate = self
         pickerView.dataSource = self
-        for i in 10...59{
+        for i in 10...59 {
             minutes.append(String(i))
         }
         self.pickerView.setValue(UIColor.black, forKey: "textColor")
@@ -58,11 +58,11 @@ class PickerViewController: UIViewController {
             return
         }
         
-        if data.count == 0 || todayData == []{
+        if data.count == 0 || todayData == [] {
             if receivedTitle == "出勤時刻" {
-                data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤":"", "休憩": "", "memo": ""])
+                data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤": "", "休憩": "", "memo": ""])
             } else if receivedTitle == "退勤時刻"{
-                data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "", "退勤":"\(setHour):\(setMinute)", "休憩": "", "memo": ""])
+                data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "\(setHour):\(setMinute)", "休憩": "", "memo": ""])
                 
             }
         } else {
@@ -73,19 +73,17 @@ class PickerViewController: UIViewController {
                     } else if receivedTitle == "退勤時刻"{
                         data[i]["退勤"] = "\(setHour):\(setMinute)"
                     }
-                } else if i == data.count - 1{
+                } else if i == data.count - 1 {
                     if receivedTitle == "出勤時刻" {
-                        data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤":"", "休憩": "", "memo": ""])
+                        data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤": "", "休憩": "", "memo": ""])
                     } else if receivedTitle == "退勤時刻"{
-                        data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "", "退勤":"\(setHour):\(setMinute)", "休憩": "", "memo": ""])
+                        data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "\(setHour):\(setMinute)", "休憩": "", "memo": ""])
                         
                     }
                     
                 }
                 
-                
             }
-            
             
         }
         UserDefaults.standard.set(data, forKey: "data")
@@ -93,7 +91,7 @@ class PickerViewController: UIViewController {
     }
 }
 
-extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 4
     }
@@ -114,7 +112,7 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        switch component{
+        switch component {
         case 0:
             return hour[row]
         case 1:
@@ -129,7 +127,7 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        switch component{
+        switch component {
         case 0:
             setHour = hour[row]
         case 2:
@@ -141,11 +139,3 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     }
     
 }
-
-
-
-
-
-
-
-
