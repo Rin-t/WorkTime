@@ -248,7 +248,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="namePhonePad"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="emailAddress"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wl-WR-xs5">
                                 <rect key="frame" x="157" y="692" width="100" height="100"/>
@@ -317,19 +317,20 @@
         <!--Navigation Controller-->
         <scene sceneID="YiC-02-YJG">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P3U-q2-sJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="xh8-ob-bVX" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ffm-el-RBm">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="P3U-q2-sJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="959" y="1852"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="r2V-7c-RiI">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6vJ-DO-nvJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="hWC-qA-9ah" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RgG-wc-FE6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -373,7 +374,6 @@
                         <viewLayoutGuide key="safeArea" id="dWY-2t-Mqf"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6vJ-DO-nvJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1885.5999999999999" y="1851.7241379310346"/>
         </scene>
@@ -502,6 +502,7 @@
         <!--Item-->
         <scene sceneID="sCr-I4-ReP">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="euZ-id-ZPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="KZg-Fm-kO6" customClass="Tab4ViewController" customModule="WorkTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpD-kE-T7u">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -543,13 +544,13 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="G8u-pZ-yo8"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="euZ-id-ZPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="1851.5625"/>
         </scene>
         <!--Item-->
         <scene sceneID="pMY-Z2-u2s">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gM6-Wg-gff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="pDI-Si-hWc" customClass="Tab3ViewController" customModule="WorkTime" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bYX-4w-iby">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -559,7 +560,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="x7z-W5-F4x"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gM6-Wg-gff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="111.59420289855073" y="1123.6607142857142"/>
         </scene>

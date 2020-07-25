@@ -8,10 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		228E940E171669B020C8896A /* Pods_WorkTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B53654DB898F867ECA3EE3 /* Pods_WorkTime.framework */; };
-		243784C524C2721200F157F6 /* DayDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */; };
-		243784C724C2774800F157F6 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784C624C2774800F157F6 /* PickerViewController.swift */; };
-		24D0F9DE24B17EF1008D2187 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */; };
-		24D0FA1C24B93118008D2187 /* DayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */; };
+		243784E924CBF65F00F157F6 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */; };
+		243784EA24CBF65F00F157F6 /* Tab2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E024CBF65F00F157F6 /* Tab2ViewController.swift */; };
+		243784EB24CBF65F00F157F6 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E124CBF65F00F157F6 /* Tab1ViewController.swift */; };
+		243784EC24CBF65F00F157F6 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E224CBF65F00F157F6 /* PickerViewController.swift */; };
+		243784ED24CBF65F00F157F6 /* Tab4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E324CBF65F00F157F6 /* Tab4ViewController.swift */; };
+		243784EE24CBF65F00F157F6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */; };
+		243784EF24CBF65F00F157F6 /* DayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E524CBF65F00F157F6 /* DayDetailViewController.swift */; };
+		243784F024CBF65F00F157F6 /* DetailSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */; };
+		243784F124CBF65F00F157F6 /* CreateCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E724CBF65F00F157F6 /* CreateCircle.swift */; };
+		243784F224CBF65F00F157F6 /* DayDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */; };
 		24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */; };
 		24FDB5C6249D9F9E003885F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5C5249D9F9E003885F3 /* SceneDelegate.swift */; };
 		24FDB5CD249D9FA4003885F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FDB5CC249D9FA4003885F3 /* Assets.xcassets */; };
@@ -19,12 +25,6 @@
 		24FDB5DB249D9FA5003885F3 /* WorkTimeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5DA249D9FA5003885F3 /* WorkTimeTests.swift */; };
 		24FDB5E6249D9FA5003885F3 /* WorkTimeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5E5249D9FA5003885F3 /* WorkTimeUITests.swift */; };
 		24FDB5F4249F7BE8003885F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24FDB5F3249F7BE8003885F3 /* Main.storyboard */; };
-		24FDB60C24A4E8F8003885F3 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB60B24A4E8F8003885F3 /* Tab1ViewController.swift */; };
-		24FDB60E24A646E5003885F3 /* CreateCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB60D24A646E5003885F3 /* CreateCircle.swift */; };
-		24FDB61024A6C663003885F3 /* Tab2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB60F24A6C663003885F3 /* Tab2ViewController.swift */; };
-		24FDB61224A6C67C003885F3 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB61124A6C67C003885F3 /* Tab3ViewController.swift */; };
-		24FDB61424A6C688003885F3 /* Tab4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB61324A6C688003885F3 /* Tab4ViewController.swift */; };
-		24FDB61624A6C83A003885F3 /* DetailSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB61524A6C83A003885F3 /* DetailSettingViewController.swift */; };
 		B81632123659354DC5415419 /* Pods_WorkTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A88BAA83FBD970BCC5A50B4 /* Pods_WorkTimeTests.framework */; };
 		F9789CC8F1ACE1CB0A883E44 /* Pods_WorkTime_WorkTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A0927BBE57AC374A06E591 /* Pods_WorkTime_WorkTimeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -47,10 +47,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailTableViewCell.swift; sourceTree = "<group>"; };
-		243784C624C2774800F157F6 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
-		24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailViewController.swift; sourceTree = "<group>"; };
+		243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
+		243784E024CBF65F00F157F6 /* Tab2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab2ViewController.swift; sourceTree = "<group>"; };
+		243784E124CBF65F00F157F6 /* Tab1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
+		243784E224CBF65F00F157F6 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		243784E324CBF65F00F157F6 /* Tab4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab4ViewController.swift; sourceTree = "<group>"; };
+		243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		243784E524CBF65F00F157F6 /* DayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailViewController.swift; sourceTree = "<group>"; };
+		243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingViewController.swift; sourceTree = "<group>"; };
+		243784E724CBF65F00F157F6 /* CreateCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCircle.swift; sourceTree = "<group>"; };
+		243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailTableViewCell.swift; sourceTree = "<group>"; };
 		24FDB5C0249D9F9E003885F3 /* WorkTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FDB5C5249D9F9E003885F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,12 +70,6 @@
 		24FDB5E5249D9FA5003885F3 /* WorkTimeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTimeUITests.swift; sourceTree = "<group>"; };
 		24FDB5E7249D9FA5003885F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24FDB5F3249F7BE8003885F3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		24FDB60B24A4E8F8003885F3 /* Tab1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
-		24FDB60D24A646E5003885F3 /* CreateCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCircle.swift; sourceTree = "<group>"; };
-		24FDB60F24A6C663003885F3 /* Tab2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab2ViewController.swift; sourceTree = "<group>"; };
-		24FDB61124A6C67C003885F3 /* Tab3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
-		24FDB61324A6C688003885F3 /* Tab4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab4ViewController.swift; sourceTree = "<group>"; };
-		24FDB61524A6C83A003885F3 /* DetailSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSettingViewController.swift; sourceTree = "<group>"; };
 		2A88BAA83FBD970BCC5A50B4 /* Pods_WorkTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WorkTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A0EC40D5D2135A371743017 /* Pods-WorkTime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkTime.debug.xcconfig"; path = "Target Support Files/Pods-WorkTime/Pods-WorkTime.debug.xcconfig"; sourceTree = "<group>"; };
 		6AF657DF32D42D98EA6A2CDC /* Pods-WorkTime-WorkTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WorkTime-WorkTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-WorkTime-WorkTimeUITests/Pods-WorkTime-WorkTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +109,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		243784DE24CBF65F00F157F6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */,
+				243784E024CBF65F00F157F6 /* Tab2ViewController.swift */,
+				243784E124CBF65F00F157F6 /* Tab1ViewController.swift */,
+				243784E224CBF65F00F157F6 /* PickerViewController.swift */,
+				243784E324CBF65F00F157F6 /* Tab4ViewController.swift */,
+				243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */,
+				243784E524CBF65F00F157F6 /* DayDetailViewController.swift */,
+				243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */,
+				243784E724CBF65F00F157F6 /* CreateCircle.swift */,
+				243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		24FDB5B7249D9F9E003885F3 = {
 			isa = PBXGroup;
 			children = (
@@ -134,8 +151,7 @@
 		24FDB5C2249D9F9E003885F3 /* WorkTime */ = {
 			isa = PBXGroup;
 			children = (
-				24FDB60A24A4E8B0003885F3 /* Controller */,
-				24FDB60924A4E8A4003885F3 /* Model */,
+				243784DE24CBF65F00F157F6 /* Controller */,
 				24FDB60824A4E884003885F3 /* View */,
 				24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */,
 				24FDB5C5249D9F9E003885F3 /* SceneDelegate.swift */,
@@ -167,33 +183,9 @@
 		24FDB60824A4E884003885F3 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				243784C624C2774800F157F6 /* PickerViewController.swift */,
 				24FDB5F3249F7BE8003885F3 /* Main.storyboard */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		24FDB60924A4E8A4003885F3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				24FDB60D24A646E5003885F3 /* CreateCircle.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		24FDB60A24A4E8B0003885F3 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				24FDB60B24A4E8F8003885F3 /* Tab1ViewController.swift */,
-				24FDB60F24A6C663003885F3 /* Tab2ViewController.swift */,
-				24FDB61124A6C67C003885F3 /* Tab3ViewController.swift */,
-				24FDB61324A6C688003885F3 /* Tab4ViewController.swift */,
-				24FDB61524A6C83A003885F3 /* DetailSettingViewController.swift */,
-				24D0F9DD24B17EF0008D2187 /* CustomTableViewCell.swift */,
-				24D0FA1B24B93118008D2187 /* DayDetailViewController.swift */,
-				243784C424C2721200F157F6 /* DayDetailTableViewCell.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		3B8B93D48990A03AA703E0E6 /* Pods */ = {
@@ -367,7 +359,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n${PODS_ROOT}/SwiftLint/swiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#if which \"${PODS_ROOT}/SwiftLint/swiftlint\" >/dev/null; then\n# ${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 		4E0C1F5B1C945D8F7686A45D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -476,18 +468,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D0F9DE24B17EF1008D2187 /* CustomTableViewCell.swift in Sources */,
-				24FDB61424A6C688003885F3 /* Tab4ViewController.swift in Sources */,
-				24FDB61224A6C67C003885F3 /* Tab3ViewController.swift in Sources */,
-				24FDB60C24A4E8F8003885F3 /* Tab1ViewController.swift in Sources */,
-				243784C524C2721200F157F6 /* DayDetailTableViewCell.swift in Sources */,
-				24D0FA1C24B93118008D2187 /* DayDetailViewController.swift in Sources */,
-				243784C724C2774800F157F6 /* PickerViewController.swift in Sources */,
+				243784EC24CBF65F00F157F6 /* PickerViewController.swift in Sources */,
+				243784EB24CBF65F00F157F6 /* Tab1ViewController.swift in Sources */,
+				243784E924CBF65F00F157F6 /* Tab3ViewController.swift in Sources */,
+				243784F124CBF65F00F157F6 /* CreateCircle.swift in Sources */,
+				243784F024CBF65F00F157F6 /* DetailSettingViewController.swift in Sources */,
+				243784EF24CBF65F00F157F6 /* DayDetailViewController.swift in Sources */,
+				243784EE24CBF65F00F157F6 /* CustomTableViewCell.swift in Sources */,
 				24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */,
-				24FDB61624A6C83A003885F3 /* DetailSettingViewController.swift in Sources */,
 				24FDB5C6249D9F9E003885F3 /* SceneDelegate.swift in Sources */,
-				24FDB61024A6C663003885F3 /* Tab2ViewController.swift in Sources */,
-				24FDB60E24A646E5003885F3 /* CreateCircle.swift in Sources */,
+				243784ED24CBF65F00F157F6 /* Tab4ViewController.swift in Sources */,
+				243784F224CBF65F00F157F6 /* DayDetailTableViewCell.swift in Sources */,
+				243784EA24CBF65F00F157F6 /* Tab2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
