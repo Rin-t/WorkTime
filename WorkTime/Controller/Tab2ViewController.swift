@@ -9,13 +9,10 @@
 import UIKit
 
 
-struct WorkStatus2 {
-    let year: String
+struct WorkStatus {
+    var year: String
     let month: String
     let day: String
-//    let beginTime: String
-//    let finishTime: String
-//    let breakTime: String
 }
 
 
@@ -28,29 +25,22 @@ class Tab2ViewController: UIViewController {
     // userdefaultData か data に揃えた方が良さそう
     var userdefaultData: [[String: String]] = []
     var data: [[String: String]] = []
-    var data2: [WorkStatus2] = []
-    //    var beginningTimesData: [String] = []
-    //    var finishTimesData: [String] = []
-    //    var biginningDayData: [String] = []
-    //    var finishDayData: [String] = []
-    //    var breakTimeData: [String] = []
-    //    var breakDayData: [String] = []
+    var data2: [WorkStatus] = []
     
     var year = 0
     var month = 0
     var days = 0
+    var passYmd: WorkStatus!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         timerUpdate()
         
         for i in 1...31{
             data.append(["年": String(year), "月":String(month), "日": "\(String(i))", "出勤": "", "退勤":"", "休憩": "", "memo": ""])
         }
         
-        tableView.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,30 +49,20 @@ class Tab2ViewController: UIViewController {
         guard let data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
-        print(data)
-        
         
         for dayData in data {
             let year = dayData["年"]!
             let month = dayData["月"]!
             let day = dayData["日"]!
-            let workStatus2 = WorkStatus2(year: year, month: month, day: day)
+            let workStatus2 = WorkStatus(year: year, month: month, day: day)
             data2.append(workStatus2)
         }
         
-        for dayData in data2 {
-            print("-------")
-            print(dayData.year)
-            print(dayData.month)
-            print(dayData.day)
-            print("-------")
-        }
         
         let julyData = data2.filter { workStatus2 -> Bool in
             workStatus2.month == "07"
         }
 
-        
         self.userdefaultData = data
         
         if userdefaultData.count == 0 {
@@ -111,8 +91,6 @@ class Tab2ViewController: UIViewController {
     @IBAction func nextMonthTapped(_ sender: UIButton) {
         
         //その年月のデータのみ取得してdataに入れる
-        
-        
         if month == 12 {
             month = 1
             year += 1
@@ -142,7 +120,7 @@ class Tab2ViewController: UIViewController {
     //MARK: - timerUpdate
     
     
-    @objc func timerUpdate() {
+    func timerUpdate() {
         
         let date = DateFormatter()
         date.timeStyle = .none
@@ -187,9 +165,16 @@ extension Tab2ViewController: UITableViewDataSource,UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let passData = WorkStatus(year: String(year), month: String(month), day: data[indexPath.row]["日"]!)
+        print(passData)
+        passYmd = passData
         performSegue(withIdentifier: "goToDayDetail", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let nextVC = segue.destination as! DayDetailViewController
+        nextVC.ymd = passYmd
+    }
     
     
 }

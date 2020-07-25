@@ -16,14 +16,18 @@ class PickerViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     var setHour = "0"
-    var setMinute = "0"
+    var setMinute = "00"
     var receivedTitle = ""
+    var todayData: [[String:String]] = [[:]]
+    var ymd: WorkStatus!
     
     let hour = ["0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"]
-    var minutes:[String] = []
+    var minutes:[String] = ["00","01","02","03","04","05","06","07","08","09"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(minutes[0])
+        print(todayData)
         
         returnButton.layer.cornerRadius = 20
         
@@ -35,7 +39,7 @@ class PickerViewController: UIViewController {
         
         pickerView.delegate = self
         pickerView.dataSource = self
-        for i in 0...59{
+        for i in 10...59{
             minutes.append(String(i))
         }
         self.pickerView.setValue(UIColor.black, forKey: "textColor")
@@ -43,21 +47,50 @@ class PickerViewController: UIViewController {
     }
     
     @IBAction func returnTapped(_ sender: Any) {
-       
+        
         dismiss(animated: true, completion: nil)
         
     }
     
     @IBAction func decisionTapped(_ sender: UIButton) {
         
-        let preVC = self.presentingViewController as! DayDetailViewController
-        preVC.setHour = setHour
-        preVC.setMinute = setMinute
+        guard var data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+            return
+        }
+        
+        if data.count == 0 || todayData == []{
+            if receivedTitle == "出勤時刻" {
+                data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤":"", "休憩": "", "memo": ""])
+            } else if receivedTitle == "退勤時刻"{
+                data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "", "退勤":"\(setHour):\(setMinute)", "休憩": "", "memo": ""])
+                
+            }
+        } else {
+            for i in 0...data.count - 1 {
+                if data[i]["年"] == todayData[0]["年"] && data[i]["月"] == todayData[0]["月"] && data[i]["日"] == todayData[0]["日"] {
+                    if receivedTitle == "出勤時刻" {
+                        data[i]["出勤"] = "\(setHour):\(setMinute)"
+                    } else if receivedTitle == "退勤時刻"{
+                        data[i]["退勤"] = "\(setHour):\(setMinute)"
+                    }
+                } else if i == data.count - 1{
+                    if receivedTitle == "出勤時刻" {
+                        data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤":"", "休憩": "", "memo": ""])
+                    } else if receivedTitle == "退勤時刻"{
+                        data.append(["年": ymd.year, "月":ymd.month, "日": ymd.day, "出勤": "", "退勤":"\(setHour):\(setMinute)", "休憩": "", "memo": ""])
+                        
+                    }
+                    
+                }
+                
+                
+            }
+            
+            
+        }
+        UserDefaults.standard.set(data, forKey: "data")
         dismiss(animated: true, completion: nil)
-               
     }
-    
-    
 }
 
 extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
@@ -78,7 +111,6 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         default:
             return 0
         }
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -107,17 +139,11 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource{
         }
         
     }
-    //    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-    //
-    //        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 50))
-    //        label.textAlignment = .center
-    //        label.text = hour[row]
-    //        label.font = UIFont(name: "Zapfino",size:16)
-    //        label.textColor = .red
-    //        return label
-    //    }
     
 }
+
+
+
 
 
 
