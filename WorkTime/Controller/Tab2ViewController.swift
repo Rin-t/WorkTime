@@ -43,41 +43,46 @@ class Tab2ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+        guard let dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
         
-        for dayData in data {
-            let year = dayData["年"]!
-            let month = dayData["月"]!
-            let day = dayData["日"]!
-            let workStatus2 = WorkStatus(year: year, month: month, day: day)
-            data2.append(workStatus2)
-        }
-        
-        let julyData = data2.filter { workStatus2 -> Bool in
-            workStatus2.month == "07"
-        }
+//        for dayData in dataList {
+//            let year = dayData["年"]!
+//            let month = dayData["月"]!
+//            let day = dayData["日"]!
+//            let workStatus2 = WorkStatus(year: year, month: month, day: day)
+//            data2.append(workStatus2)
+//        }
+//
+//        let julyData = data2.filter { workStatus2 -> Bool in
+//            workStatus2.month == "07"
+//        }
 
-        self.userdefaultData = data
         
-        if userdefaultData.count == 0 {
+        if dataList.count == 0 {
             return
         } else {
-            for i in 0...userdefaultData.count - 1 {
+            for i in 0...dataList.count - 1 {
                 for j in 0...30 {
-                    if Int(userdefaultData[i]["日"]!) == Int(self.data[j]["日"]!) && userdefaultData[i]["年"] == self.data[j]["年"] && Int(userdefaultData[i]["月"]!) == Int(self.data[j]["月"]!) {
-                        self.data[j] = userdefaultData[i]
+                    if Int(dataList[i]["日"]!) == Int(data[j]["日"]!) && dataList[i]["年"] == data[j]["年"] && Int(dataList[i]["月"]!) == Int(data[j]["月"]!) {
+                        data[j] = dataList[i]
                         
                     }
                 }
             }
-            
+            if Int(dataList[0]["日"]!) == Int(data[6]["日"]!) && dataList[0]["年"] == data[6]["年"] && Int(dataList[0]["月"]!) == Int(data[6]["月"]!) {
+                print("true")
+                data[6] = dataList[0]
+            }
             tableView.reloadData()
             
         }
         
     }
+    
+
+    
     
     //MARK: - Next,PreviousMonthButton
     @IBAction func nextMonthTapped(_ sender: UIButton) {
@@ -148,12 +153,16 @@ extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "time")! as! CustomTableViewCell
         cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime: data[indexPath.row]["退勤"]!, breakTime: data[indexPath.row]["休憩"]!)
+        
+       // let button = UIButton()
+        cell.bulkInputButton.tag = indexPath.row
+        cell.bulkInputButton.addTarget(CustomTableViewCell(), action: #selector(cell.bulkInputTapped(_:)), for: .touchUpInside)
+        cell.ymd = WorkStatus(year: data[indexPath.row]["年"]!, month: data[indexPath.row]["月"]!, day: data[indexPath.row]["日"]!)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let passData = WorkStatus(year: String(year), month: String(month), day: data[indexPath.row]["日"]!)
-        print(passData)
         passYmd = passData
         performSegue(withIdentifier: "goToDayDetail", sender: nil)
     }

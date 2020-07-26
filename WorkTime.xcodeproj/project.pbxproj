@@ -8,16 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		228E940E171669B020C8896A /* Pods_WorkTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5B53654DB898F867ECA3EE3 /* Pods_WorkTime.framework */; };
-		243784E924CBF65F00F157F6 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */; };
 		243784EA24CBF65F00F157F6 /* Tab2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E024CBF65F00F157F6 /* Tab2ViewController.swift */; };
 		243784EB24CBF65F00F157F6 /* Tab1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E124CBF65F00F157F6 /* Tab1ViewController.swift */; };
 		243784EC24CBF65F00F157F6 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E224CBF65F00F157F6 /* PickerViewController.swift */; };
-		243784ED24CBF65F00F157F6 /* Tab4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E324CBF65F00F157F6 /* Tab4ViewController.swift */; };
 		243784EE24CBF65F00F157F6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */; };
 		243784EF24CBF65F00F157F6 /* DayDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E524CBF65F00F157F6 /* DayDetailViewController.swift */; };
 		243784F024CBF65F00F157F6 /* DetailSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */; };
 		243784F124CBF65F00F157F6 /* CreateCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E724CBF65F00F157F6 /* CreateCircle.swift */; };
 		243784F224CBF65F00F157F6 /* DayDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */; };
+		243784F424CC537300F157F6 /* Tab3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243784F324CC537300F157F6 /* Tab3ViewController.swift */; };
 		24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */; };
 		24FDB5C6249D9F9E003885F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FDB5C5249D9F9E003885F3 /* SceneDelegate.swift */; };
 		24FDB5CD249D9FA4003885F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24FDB5CC249D9FA4003885F3 /* Assets.xcassets */; };
@@ -47,16 +46,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
 		243784E024CBF65F00F157F6 /* Tab2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab2ViewController.swift; sourceTree = "<group>"; };
 		243784E124CBF65F00F157F6 /* Tab1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab1ViewController.swift; sourceTree = "<group>"; };
 		243784E224CBF65F00F157F6 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
-		243784E324CBF65F00F157F6 /* Tab4ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tab4ViewController.swift; sourceTree = "<group>"; };
 		243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		243784E524CBF65F00F157F6 /* DayDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailViewController.swift; sourceTree = "<group>"; };
 		243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSettingViewController.swift; sourceTree = "<group>"; };
 		243784E724CBF65F00F157F6 /* CreateCircle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateCircle.swift; sourceTree = "<group>"; };
 		243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayDetailTableViewCell.swift; sourceTree = "<group>"; };
+		243784F324CC537300F157F6 /* Tab3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab3ViewController.swift; sourceTree = "<group>"; };
 		24FDB5C0249D9F9E003885F3 /* WorkTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WorkTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FDB5C3249D9F9E003885F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24FDB5C5249D9F9E003885F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,16 +110,15 @@
 		243784DE24CBF65F00F157F6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				243784DF24CBF65F00F157F6 /* Tab3ViewController.swift */,
 				243784E024CBF65F00F157F6 /* Tab2ViewController.swift */,
 				243784E124CBF65F00F157F6 /* Tab1ViewController.swift */,
 				243784E224CBF65F00F157F6 /* PickerViewController.swift */,
-				243784E324CBF65F00F157F6 /* Tab4ViewController.swift */,
 				243784E424CBF65F00F157F6 /* CustomTableViewCell.swift */,
 				243784E524CBF65F00F157F6 /* DayDetailViewController.swift */,
 				243784E624CBF65F00F157F6 /* DetailSettingViewController.swift */,
 				243784E724CBF65F00F157F6 /* CreateCircle.swift */,
 				243784E824CBF65F00F157F6 /* DayDetailTableViewCell.swift */,
+				243784F324CC537300F157F6 /* Tab3ViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -470,15 +467,14 @@
 			files = (
 				243784EC24CBF65F00F157F6 /* PickerViewController.swift in Sources */,
 				243784EB24CBF65F00F157F6 /* Tab1ViewController.swift in Sources */,
-				243784E924CBF65F00F157F6 /* Tab3ViewController.swift in Sources */,
 				243784F124CBF65F00F157F6 /* CreateCircle.swift in Sources */,
 				243784F024CBF65F00F157F6 /* DetailSettingViewController.swift in Sources */,
 				243784EF24CBF65F00F157F6 /* DayDetailViewController.swift in Sources */,
 				243784EE24CBF65F00F157F6 /* CustomTableViewCell.swift in Sources */,
 				24FDB5C4249D9F9E003885F3 /* AppDelegate.swift in Sources */,
 				24FDB5C6249D9F9E003885F3 /* SceneDelegate.swift in Sources */,
-				243784ED24CBF65F00F157F6 /* Tab4ViewController.swift in Sources */,
 				243784F224CBF65F00F157F6 /* DayDetailTableViewCell.swift in Sources */,
+				243784F424CC537300F157F6 /* Tab3ViewController.swift in Sources */,
 				243784EA24CBF65F00F157F6 /* Tab2ViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

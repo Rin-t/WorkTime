@@ -52,14 +52,6 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="勤務時間" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bT4-Ua-3sY">
-                                                    <rect key="frame" x="324" y="0.0" width="70" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="出勤" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06b-XW-iw6">
                                                     <rect key="frame" x="77" y="0.0" width="69" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -68,15 +60,24 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yWj-AA-xr3">
+                                                    <rect key="frame" x="325" y="0.0" width="69" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <state key="normal" title="一括入力"/>
+                                                    <connections>
+                                                        <action selector="bulkInputTapped:" destination="hYZ-C4-qFY" eventType="touchUpInside" id="xLm-hV-ugR"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="beginingTimeLabel" destination="06b-XW-iw6" id="djc-GC-XxE"/>
                                             <outlet property="breakTimeLabel" destination="JDM-d3-ka0" id="h7O-GT-eKp"/>
+                                            <outlet property="bulkInputButton" destination="yWj-AA-xr3" id="Tew-Kc-fIa"/>
                                             <outlet property="dateLabel" destination="oZu-az-5gK" id="5Dq-dM-pe2"/>
                                             <outlet property="finishTimeLabel" destination="ErL-wK-oaB" id="s6j-kS-PyS"/>
-                                            <outlet property="workTimeLabel" destination="bT4-Ua-3sY" id="yBH-Fs-WP2"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -184,6 +185,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OOn-SH-hab" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="406.47321428571428"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="AZD-bi-M9T">
+            <objects>
+                <viewController id="HNF-qh-kYO" customClass="Tab3ViewController" customModule="WorkTime" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N7U-LY-DFY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.98061281440000003" green="0.89768773319999995" blue="0.79621881250000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="JRg-ib-jAm"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="OyC-Bt-PVn"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEs-pY-5lo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="117" y="1085"/>
         </scene>
         <!--Day Detail View Controller-->
         <scene sceneID="NxE-2m-NHD">
@@ -428,6 +445,7 @@
                     <connections>
                         <segue destination="VY7-x2-dHe" kind="relationship" relationship="viewControllers" id="C93-ux-pks"/>
                         <segue destination="fZH-0M-vv9" kind="relationship" relationship="viewControllers" id="tje-Ka-H8l"/>
+                        <segue destination="HNF-qh-kYO" kind="relationship" relationship="viewControllers" id="Uah-u7-Mvh"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NEa-ui-CXy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
