@@ -121,6 +121,15 @@ class Tab2ViewController: UIViewController {
         
     }
     
+    @objc func showAlert(sender: UIButton) {
+        print("index.row=\(sender.tag)")
+        let alert = UIAlertController(title: "セルのボタンが押されました", message: "セルのボタンが押されました\nindex=\(sender.tag)", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "閉じる", style: .default, handler: nil)
+           
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - TableView
@@ -147,7 +156,9 @@ extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.bulkInputButton.tag = indexPath.row
         
         //ここで一括入力のボタンを押したときのアクションを呼び出している
-        cell.bulkInputButton.addTarget(CustomTableViewCell(), action: #selector(cell.bulkInputTapped(_:)), for: .touchUpInside)
+        // cell.bulkInputButton.addTarget(CustomTableViewCell(), action: #selector(cell.bulkInputTapped(_:)), for: .touchUpInside)
+        cell.bulkInputButton.tag = indexPath.row
+        cell.bulkInputButton.addTarget(self, action: #selector(Tab2ViewController.showAlert(sender:)), for: .touchUpInside)
         cell.ymd = WorkStatus(year: data[indexPath.row]["年"]!, month: data[indexPath.row]["月"]!, day: data[indexPath.row]["日"]!)
         return cell
     }
