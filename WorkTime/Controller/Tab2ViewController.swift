@@ -42,22 +42,12 @@ class Tab2ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+      
         
         guard let dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
         
-//        for dayData in dataList {
-//            let year = dayData["年"]!
-//            let month = dayData["月"]!
-//            let day = dayData["日"]!
-//            let workStatus2 = WorkStatus(year: year, month: month, day: day)
-//            data2.append(workStatus2)
-//        }
-//
-//        let julyData = data2.filter { workStatus2 -> Bool in
-//            workStatus2.month == "07"
-//        }
 
         
         if dataList.count == 0 {
@@ -154,8 +144,9 @@ extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "time")! as! CustomTableViewCell
         cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime: data[indexPath.row]["退勤"]!, breakTime: data[indexPath.row]["休憩"]!)
         
-       // let button = UIButton()
         cell.bulkInputButton.tag = indexPath.row
+        
+        //ここで一括入力のボタンを押したときのアクションを呼び出している
         cell.bulkInputButton.addTarget(CustomTableViewCell(), action: #selector(cell.bulkInputTapped(_:)), for: .touchUpInside)
         cell.ymd = WorkStatus(year: data[indexPath.row]["年"]!, month: data[indexPath.row]["月"]!, day: data[indexPath.row]["日"]!)
         return cell

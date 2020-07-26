@@ -21,10 +21,10 @@ class CustomTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     
@@ -36,7 +36,7 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     @IBAction func bulkInputTapped(_ sender: UIButton) {
-     
+        
         
         guard var data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
@@ -52,12 +52,32 @@ class CustomTableViewCell: UITableViewCell {
             breakTimeLabel.text = "60"
             data.append(["年": String(ymd.year), "月": String(ymd.month), "日": String(ymd.day), "出勤": "9:00", "退勤": "17:00", "休憩": "60", "memo": ""])
         } else if todayData != [] {
-            print("dataあるよ")
+            
+            //もし一括入力を押した日のデータがすでにある場合は上書きするかどうかのアラートを出したい。
+            
+            let alert = UIAlertController(title: "上書き保存の確認", message: "すでにこの日のデータが保存されています。\n上書き保存をしますか？", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "する", style: .default) { (UIaleratAction) in
+                self.beginingTimeLabel.text = "9:00"
+                self.finishTimeLabel.text = "17:00"
+                self.breakTimeLabel.text = "60"
+                data.append(["年": String(self.ymd.year), "月": String(self.ymd.month), "日": String(self.ymd.day), "出勤": "9:00", "退勤": "17:00", "休憩": "60", "memo": ""])
+            }
+            let cancelAction = UIAlertAction(title: "しない", style: .default, handler: nil)
+            
+            alert.addAction(defaultAction)
+            alert.addAction(cancelAction)
+            
+            //classがTableViewCellだから？presentメソッドがなくてアラートを実行できませんでした。
+            //以下の73,74行目のコードでいけるかと思いましたができませんでした・・・
+            
+            let VC = Tab2ViewController()
+            VC.present(alert, animated: true, completion: nil)
+            
         }
         UserDefaults.standard.set(data, forKey: "data")
         print(data)
         
     }
     
-
+    
 }
