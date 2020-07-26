@@ -70,8 +70,8 @@ class CustomTableViewCell: UITableViewCell {
             //classがTableViewCellだから？presentメソッドがなくてアラートを実行できませんでした。
             //以下の73,74行目のコードでいけるかと思いましたができませんでした・・・
             
-            let VC = Tab2ViewController()
-            VC.present(alert, animated: true, completion: nil)
+//            let VC = Tab2ViewController()
+//            VC.present(alert, animated: true, completion: nil)
             
         }
         UserDefaults.standard.set(data, forKey: "data")
