@@ -37,7 +37,6 @@ class CustomTableViewCell: UITableViewCell {
     
     @IBAction func bulkInputTapped(_ sender: UIButton) {
         
-        
         guard var data = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
@@ -47,6 +46,7 @@ class CustomTableViewCell: UITableViewCell {
         }
         
         if todayData == [] {
+            print("a")
             beginingTimeLabel.text = "9:00"
             finishTimeLabel.text = "17:00"
             breakTimeLabel.text = "60"
@@ -66,7 +66,7 @@ class CustomTableViewCell: UITableViewCell {
             
             alert.addAction(defaultAction)
             alert.addAction(cancelAction)
-            
+            //a.showAlert(sender: bulkInputButton)
             //classがTableViewCellだから？presentメソッドがなくてアラートを実行できませんでした。
             //以下の73,74行目のコードでいけるかと思いましたができませんでした・・・
             
@@ -75,7 +75,7 @@ class CustomTableViewCell: UITableViewCell {
             
         }
         UserDefaults.standard.set(data, forKey: "data")
-        print(data)
+       
         
     }
     

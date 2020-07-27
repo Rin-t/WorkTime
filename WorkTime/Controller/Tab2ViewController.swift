@@ -62,7 +62,6 @@ class Tab2ViewController: UIViewController {
                 }
             }
             if Int(dataList[0]["日"]!) == Int(data[6]["日"]!) && dataList[0]["年"] == data[6]["年"] && Int(dataList[0]["月"]!) == Int(data[6]["月"]!) {
-                print("true")
                 data[6] = dataList[0]
             }
             tableView.reloadData()
@@ -154,9 +153,6 @@ extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime: data[indexPath.row]["退勤"]!, breakTime: data[indexPath.row]["休憩"]!)
         
         cell.bulkInputButton.tag = indexPath.row
-        
-        //ここで一括入力のボタンを押したときのアクションを呼び出している
-        // cell.bulkInputButton.addTarget(CustomTableViewCell(), action: #selector(cell.bulkInputTapped(_:)), for: .touchUpInside)
         cell.bulkInputButton.tag = indexPath.row
         cell.bulkInputButton.addTarget(self, action: #selector(Tab2ViewController.showAlert(sender:)), for: .touchUpInside)
         cell.ymd = WorkStatus(year: data[indexPath.row]["年"]!, month: data[indexPath.row]["月"]!, day: data[indexPath.row]["日"]!)

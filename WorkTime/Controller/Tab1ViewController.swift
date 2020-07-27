@@ -17,7 +17,7 @@ class Tab1ViewController: UIViewController {
     @IBOutlet weak var breakButton: UIButton!
     var breakTime = "60"
     var data: [[String: String]] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -61,19 +61,19 @@ class Tab1ViewController: UIViewController {
     
     @IBAction func beginButtonTapped(_ sender: UIButton) {
         //getTime(buttonTitle: sender.currentTitle!)
-        getTime2(workStatus: .begin)
+        getTime(workStatus: .begin)
         
     }
     
     @IBAction func finishButtonTapped(_ sender: UIButton) {
         //getTime(buttonTitle: sender.currentTitle!)
-        getTime2(workStatus: .finish)
+        getTime(workStatus: .finish)
         
     }
     
     @IBAction func breakButtonTapped(_ sender: UIButton) {
         //getTime(buttonTitle: sender.currentTitle!)
-        getTime2(workStatus: .rest)
+        getTime(workStatus: .rest)
     }
     
     enum WorkStatus: String {
@@ -82,7 +82,7 @@ class Tab1ViewController: UIViewController {
         case rest = "休憩"
     }
     
-    func getTime2(workStatus: WorkStatus) {
+    func getTime(workStatus: WorkStatus) {
         let today = Date()
         
         //年月日のデータを取得
@@ -145,6 +145,19 @@ class Tab1ViewController: UIViewController {
         }
         UserDefaults.standard.set(saveData, forKey: "data")
         print(saveData)
+    }
+    
+    
+    func alert(arrayNumber: Int) {
+        let alert = UIAlertController(title: "上書き保存をしますか？", message: "すでにこの日のデータがあります。\n上書き保存しますか？", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "する", style: .default) { (UIaleratAction) in
+            
+        }
+        let cancelAction = UIAlertAction(title: "しない", style: .default, handler: nil)
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
