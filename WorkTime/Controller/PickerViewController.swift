@@ -14,6 +14,11 @@ class PickerViewController: UIViewController {
     @IBOutlet weak var returnButton: UIButton!
     @IBOutlet weak var decisionButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var hourLabel: UILabel!
+    @IBOutlet weak var hourUnitLabel: UILabel!
+    @IBOutlet weak var minuteLabel: UILabel!
+    @IBOutlet weak var minuteUnitLabel: UILabel!
+    
     
     var setHour = "0"
     var setMinute = "00"
@@ -26,8 +31,14 @@ class PickerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(minutes[0])
-        print(todayData)
+        
+        if receivedTitle == "出勤時刻" || receivedTitle == "退勤時刻" {
+            hourUnitLabel.text = "時"
+            minuteUnitLabel.text = "分"
+        } else {
+            hourUnitLabel.text = "時間"
+            minuteUnitLabel.text = "分"
+        }
         
         returnButton.layer.cornerRadius = 20
         
@@ -64,6 +75,8 @@ class PickerViewController: UIViewController {
             } else if receivedTitle == "退勤時刻"{
                 data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "\(setHour):\(setMinute)", "休憩": "", "memo": ""])
                 
+            } else if receivedTitle == "休憩時間" {
+                data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "", "休憩": "\(setHour):\(setMinute)", "memo": ""])
             }
         } else {
             for i in 0...data.count - 1 {
@@ -72,13 +85,16 @@ class PickerViewController: UIViewController {
                         data[i]["出勤"] = "\(setHour):\(setMinute)"
                     } else if receivedTitle == "退勤時刻"{
                         data[i]["退勤"] = "\(setHour):\(setMinute)"
+                    } else if receivedTitle == "休憩時間"{
+                        data[i]["休憩"] = "\(setHour):\(setMinute)"
                     }
                 } else if i == data.count - 1 {
                     if receivedTitle == "出勤時刻" {
                         data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "\(setHour):\(setMinute)", "退勤": "", "休憩": "", "memo": ""])
                     } else if receivedTitle == "退勤時刻"{
                         data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "\(setHour):\(setMinute)", "休憩": "", "memo": ""])
-                        
+                    } else if receivedTitle == "休憩時間" {
+                        data.append(["年": ymd.year, "月": ymd.month, "日": ymd.day, "出勤": "", "退勤": "", "休憩": "\(setHour):\(setMinute)", "memo": ""])
                     }
                     
                 }
@@ -93,7 +109,7 @@ class PickerViewController: UIViewController {
 
 extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 4
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -101,11 +117,7 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         case 0:
             return hour.count
         case 1:
-            return 1
-        case 2:
             return minutes.count
-        case 3:
-            return 1
         default:
             return 0
         }
@@ -116,11 +128,7 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         case 0:
             return hour[row]
         case 1:
-            return "時"
-        case 2:
             return minutes[row]
-        case 3:
-            return "分"
         default:
             return "error"
         }
@@ -130,8 +138,10 @@ extension PickerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         switch component {
         case 0:
             setHour = hour[row]
-        case 2:
+            hourLabel.text = hour[row]
+        case 1:
             setMinute = minutes[row]
+            minuteLabel.text = minutes[row]
         default:
             return
         }

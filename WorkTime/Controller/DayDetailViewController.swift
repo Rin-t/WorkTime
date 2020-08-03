@@ -103,6 +103,7 @@ extension DayDetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         nextViewTitle = cellTitle[indexPath.row]
         performSegue(withIdentifier: "goToPicker", sender: nil)
         

@@ -15,8 +15,8 @@ class Tab1ViewController: UIViewController {
     @IBOutlet weak var beginButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var breakButton: UIButton!
-    var breakTime = "60"
     var data: [[String: String]] = []
+    var defaultTime: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +29,8 @@ class Tab1ViewController: UIViewController {
         finishConvert.conversion()
         breakConvert.conversion()
         
+        
+        
         Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Tab1ViewController.timerUpdate), userInfo: nil, repeats: true)
         
         if let savedData = UserDefaults.standard.object(forKey: "data") as? [[String: String]] {
@@ -36,6 +38,13 @@ class Tab1ViewController: UIViewController {
         }
         UserDefaults.standard.set(data, forKey: "data")
         
+        guard let  defaultTime = UserDefaults.standard.object(forKey: "defaultTime") as? [String] else {
+            self.defaultTime = ["9:00", "18:00", "1:00"]
+            UserDefaults.standard.set(self.defaultTime, forKey: "defaultTime")
+            return
+        }
+        self.defaultTime = defaultTime
+        UserDefaults.standard.set(self.defaultTime, forKey: "defaultTime")
     }
     
     //MARK: - Timer
@@ -92,8 +101,8 @@ class Tab1ViewController: UIViewController {
         ymd.locale = Locale(identifier: "ja_JP")
         
         let year = ymd.string(from: today).dropLast(6)
-        let month = ymd.string(from: today).dropFirst(5).dropLast(3)
-        let date = ymd.string(from: today).dropFirst(8)
+        let month = Int(ymd.string(from: today).dropFirst(5).dropLast(3))!
+        let date = Int(ymd.string(from: today).dropFirst(8))!
         
         //時間データの取得
         let currentTime = DateFormatter()
@@ -115,7 +124,7 @@ class Tab1ViewController: UIViewController {
             
             if workStatus == .rest {
                 saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
-                saveData[0][workStatus.rawValue] = breakTime
+                saveData[0][workStatus.rawValue] = defaultTime[2]
             } else {
                 saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
                 saveData[0][workStatus.rawValue] = String(time)
@@ -126,14 +135,14 @@ class Tab1ViewController: UIViewController {
                 if saveData[i]["年"] == String(year) && saveData[i]["月"] == String(month) && saveData[i]["日"] == String(date) {
                     
                     if workStatus == .rest {
-                        saveData[i][workStatus.rawValue] = breakTime
+                        saveData[i][workStatus.rawValue] = defaultTime[2]
                     } else {
                         saveData[i][workStatus.rawValue] = String(time)
                     }
                 } else if i == saveData.count - 1 {
                     
                     if workStatus == .rest {
-                        saveData[i][workStatus.rawValue] = breakTime
+                        saveData[i][workStatus.rawValue] = defaultTime[2]
                     } else {
                         saveData.append(["年": "\(year)", "月": "\(month)", "日": "\(date)", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
                         print(saveData[0])

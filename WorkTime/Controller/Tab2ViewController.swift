@@ -20,49 +20,47 @@ class Tab2ViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
     
-    // userdefaultData か data に揃えた方が良さそう
     var userdefaultData: [[String: String]] = []
     var data: [[String: String]] = []
-    var data2: [WorkStatus] = []
-    
     var year = 0
     var month = 0
     var days = 0
+    @IBOutlet weak var tabbaritem: UITabBarItem!
     var passYmd: WorkStatus!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         timerUpdate()
         
-        for i in 1...31 {
-            data.append(["年": String(year), "月": String(month), "日": "\(String(i))", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
-        }
+        
+        
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
         
-        guard let dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+        timerUpdate()
+        data.removeAll()
+        for i in 1...31 {
+            data.append(["年": String(year), "月": String(month), "日": "\(String(i))", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
+        }
+        guard var dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
             return
         }
-        
-
+        dataList = dataList.filter { (data) -> Bool in
+            Int(data["月"]!)! ==  month
+        }
         
         if dataList.count == 0 {
             return
         } else {
             for i in 0...dataList.count - 1 {
                 for j in 0...30 {
-                    if Int(dataList[i]["日"]!) == Int(data[j]["日"]!) && dataList[i]["年"] == data[j]["年"] && Int(dataList[i]["月"]!) == Int(data[j]["月"]!) {
+                    if dataList[i]["日"] == data[j]["日"] && dataList[i]["年"] == data[j]["年"] && dataList[i]["月"] == data[j]["月"] {
                         data[j] = dataList[i]
-                        
                     }
                 }
-            }
-            if Int(dataList[0]["日"]!) == Int(data[6]["日"]!) && dataList[0]["年"] == data[6]["年"] && Int(dataList[0]["月"]!) == Int(data[6]["月"]!) {
-                data[6] = dataList[0]
             }
             tableView.reloadData()
             
@@ -70,7 +68,7 @@ class Tab2ViewController: UIViewController {
         
     }
     
-
+    
     
     
     //MARK: - Next,PreviousMonthButton
@@ -85,7 +83,39 @@ class Tab2ViewController: UIViewController {
         }
         monthLabel.text = String(month)  + "月"
         yearLabel.text = String(year)  + "年"
+        
+        data.removeAll()
+        for i in 1...31 {
+            data.append(["年": String(year), "月": String(month), "日": "\(String(i))", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
+        }
+        print(data)
+        guard var dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+            return
+        }
+        
+        dataList = dataList.filter { (data) -> Bool in
+            data["月"] ==  String(month)
+        }
+        
+        print("aaaaaaaaaaaaaaaaa")
+        
+        print(dataList)
+        
+        if dataList.count == 0 {
+            
+        } else {
+            for i in 0...dataList.count - 1 {
+                for j in 0...30 {
+                    if Int(dataList[i]["日"]!) == Int(data[j]["日"]!) && dataList[i]["年"] == data[j]["年"] && Int(dataList[i]["月"]!) == Int(data[j]["月"]!) {
+                        data[j] = dataList[i]
+                        data[j]["日"] = String(j + 1)
+                        
+                    }
+                }
+            }
+        }
         tableView.reloadData()
+        
         
     }
     
@@ -98,6 +128,35 @@ class Tab2ViewController: UIViewController {
         }
         monthLabel.text = String(month)  + "月"
         yearLabel.text = String(year)  + "年"
+        data.removeAll()
+        for i in 1...31 {
+            data.append(["年": String(year), "月": String(month), "日": "\(String(i))", "出勤": "", "退勤": "", "休憩": "", "memo": ""])
+        }
+        print(data)
+        guard var dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+            return
+        }
+        
+        dataList = dataList.filter { (data) -> Bool in
+            data["月"] ==  String(month)
+        }
+        
+        print(dataList)
+        
+        if dataList.count == 0 {
+            
+        } else {
+            for i in 0...dataList.count - 1 {
+                for j in 0...30 {
+                    if Int(dataList[i]["日"]!) == Int(data[j]["日"]!) && dataList[i]["年"] == data[j]["年"] && Int(dataList[i]["月"]!) == Int(data[j]["月"]!) {
+                        data[j] = dataList[i]
+                        data[j]["日"] = String(j + 1)
+                        
+                    }
+                }
+            }
+            
+        }
         tableView.reloadData()
         
     }
@@ -120,13 +179,32 @@ class Tab2ViewController: UIViewController {
         
     }
     
-    @objc func showAlert(sender: UIButton) {
-        print("index.row=\(sender.tag)")
-        let alert = UIAlertController(title: "セルのボタンが押されました", message: "セルのボタンが押されました\nindex=\(sender.tag)", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "閉じる", style: .default, handler: nil)
-           
+    @objc func showAlert(sender: UIButton, cell: CustomTableViewCell) {
+        let alert = UIAlertController(title: "一括保存の確認", message: "すでにデータがある場合上書きされます。\n一括入力しますか？", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "する", style: .default) { (UIaleratAction) in
+            print(sender.tag)
+            let defaultTime = UserDefaults.standard.object(forKey: "defaultTime") as? [String]
+            self.data[sender.tag]["年"] = String(self.year)
+            self.data[sender.tag]["月"] = String(self.month)
+            self.data[sender.tag]["出勤"] = defaultTime![0]
+            self.data[sender.tag]["退勤"] = defaultTime![1]
+            self.data[sender.tag]["休憩"] = defaultTime![2]
+            
+            guard var dataList = UserDefaults.standard.object(forKey: "data") as? [[String: String]] else {
+                return
+            }
+            dataList.append(["年":String(self.year), "月":String(self.month), "日": String(sender.tag + 1), "出勤":defaultTime![0], "退勤":defaultTime![1], "休憩": defaultTime![2]])
+            
+            UserDefaults.standard.set(dataList, forKey: "data")
+            self.tableView.reloadData()
+        }
+        let cancelAction = UIAlertAction(title: "しない", style: .default, handler: nil)
+        
+        alert.addAction(defaultAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+        
+        
     }
     
 }
@@ -153,8 +231,7 @@ extension Tab2ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setCell(date: data[indexPath.row]["日"]!, beginningTime: data[indexPath.row]["出勤"]!, finishTime: data[indexPath.row]["退勤"]!, breakTime: data[indexPath.row]["休憩"]!)
         
         cell.bulkInputButton.tag = indexPath.row
-        cell.bulkInputButton.tag = indexPath.row
-        cell.bulkInputButton.addTarget(self, action: #selector(Tab2ViewController.showAlert(sender:)), for: .touchUpInside)
+        cell.bulkInputButton.addTarget(self, action: #selector(Tab2ViewController.showAlert(sender:cell:)), for: .touchUpInside)
         cell.ymd = WorkStatus(year: data[indexPath.row]["年"]!, month: data[indexPath.row]["月"]!, day: data[indexPath.row]["日"]!)
         return cell
     }
